@@ -2,7 +2,6 @@ package com.librarian.dao.impl;
 
 import com.librarian.dao.BooksDAO;
 import com.librarian.entity.Book;
-import com.librarian.entity.builder.BookBuilder;
 import com.librarian.exception.CheckinErrorRuntimeExcetion;
 import com.librarian.exception.CheckoutErrorRuntimeException;
 
@@ -23,7 +22,7 @@ public class BooksDAOImpl implements BooksDAO {
         List<Book> avaliableBooks = new ArrayList<Book>();
         for (Book book :
                 books) {
-            if (!book.isCheckout()) {
+            if (!book.isInTheLibrary()) {
                 avaliableBooks.add(book);
             }
         }
@@ -36,10 +35,9 @@ public class BooksDAOImpl implements BooksDAO {
 
     public String checkoutBookByTitle(String title) {
         boolean checkoutSuccessful = false;
-        for (Book book :
-                books) {
-            if ((book.getTitle().equals(title)) && (!book.isCheckout())) {
-                book.setCheckout(true);
+        for (Book book : books) {
+            if ((book.getTitle().equals(title)) && (book.isInTheLibrary())) {
+                book.checkOut();
                 checkoutSuccessful = true;
             }
         }
@@ -54,7 +52,7 @@ public class BooksDAOImpl implements BooksDAO {
         for (Book bookStored :
                 books) {
             if (bookStored.getTitle().equals(title)) {
-                bookStored.setCheckout(false);
+                bookStored.checkOut();
                 checkinSuccesFull = true;
             }
         }
@@ -68,18 +66,8 @@ public class BooksDAOImpl implements BooksDAO {
 
     private List<Book> buildBookList() {
         books = new ArrayList<Book>();
-        books.add(new BookBuilder()
-                .withTitle("Harry Potter")
-                .withAuthor("J.K Rolling")
-                .withYearPublished(LocalDate.of(1992, Month.APRIL, 20))
-                .build());
-
-        books.add(new BookBuilder()
-                .withTitle("Senhor dos Aneis")
-                .withAuthor("Tolkien")
-                .withYearPublished(LocalDate.of(1910, Month.AUGUST, 12))
-                .build());
-
+        books.add(new Book("Harry Potter", "J.K Rolling", LocalDate.of(1992, Month.APRIL, 20)));
+        books.add(new Book("Senhor dos Aneis", "Tolkien", LocalDate.of(1910, Month.AUGUST, 12)));
         return books;
 
     }

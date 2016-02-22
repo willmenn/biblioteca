@@ -2,10 +2,12 @@ package com.librarian.model;
 
 import com.librarian.dao.impl.BooksDAOImpl;
 import com.librarian.entity.Book;
-import com.librarian.entity.builder.BookBuilder;
 import com.librarian.util.ScannerLibrayMock;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.time.LocalDate;
+import java.time.Month;
 
 import static org.junit.Assert.*;
 
@@ -21,7 +23,7 @@ public class MenuTest {
     @Test
     public void shouldReturnMenuOptions() {
         String options = menu.getOptions();
-        String expected = Menu.LIST_ALL_BOOKS_OPTIOIN + Menu.LIST_ALL_BOOKS_DESCRIPTION + "\n"
+        String expected = Menu.LIST_ALL_BOOKS_OPTION + Menu.LIST_ALL_BOOKS_DESCRIPTION + "\n"
                 + Menu.CHECKOUT_OPTION + Menu.CHECKOUT_BOOK_MESSAGE + "\n"
                 + Menu.RETURN_BOOK_OPTION + Menu.RETURN_BOOK_MESSAGE + "\n"
                 + Menu.QUIT_SYSTEM_OPTION + Menu.QUIT_SYSTEM_DESCRIPTION + "\n";
@@ -30,7 +32,7 @@ public class MenuTest {
 
     @Test
     public void shouldReturnAllBooks() {
-        String allbooks = menu.processInput(Menu.LIST_ALL_BOOKS_OPTIOIN);
+        String allbooks = menu.processInput(Menu.LIST_ALL_BOOKS_OPTION);
         assertFalse(allbooks.isEmpty());
     }
 
@@ -42,12 +44,15 @@ public class MenuTest {
 
     @Test
     public void shouldCheckoutBook() {
+
         String title = "Funcacao";
         ScannerLibrayMock scannerMock = new ScannerLibrayMock();
         scannerMock.setResponseFromScanner(title);
         menu.setScannerLibrary(scannerMock);
-        Book book = new BookBuilder().withTitle(title).build();
+
+        Book book = new Book(title, "", LocalDate.of(1991, Month.APRIL, 13));
         menu.getDao().insertBook(book);
+
         String checkoutStatusMessage = menu.processInput(Menu.CHECKOUT_OPTION);
         assertEquals(BooksDAOImpl.BOOK_IS_AVAILABLE_MESSAGE, checkoutStatusMessage);
     }

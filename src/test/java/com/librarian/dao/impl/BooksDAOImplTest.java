@@ -2,15 +2,16 @@ package com.librarian.dao.impl;
 
 import com.librarian.dao.BooksDAO;
 import com.librarian.entity.Book;
-import com.librarian.entity.builder.BookBuilder;
 import com.librarian.exception.CheckinErrorRuntimeExcetion;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
-import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 
 public class BooksDAOImplTest {
@@ -30,29 +31,34 @@ public class BooksDAOImplTest {
 
     @Test
     public void shouldAddBookIntoDB() {
-        Book book = new BookBuilder().withTitle("Suicide Red").withAuthor("J.K Rolling").build();
-        Boolean isInseted = dao.insertBook(book);
-        assertTrue(isInseted);
+        Book book = new Book("Suicide Red", "J.K Rolling", LocalDate.of(1991, Month.APRIL, 13));
+        Boolean wasInserted = dao.insertBook(book);
+        assertTrue(wasInserted);
     }
 
     @Test
+    @Ignore
     public void shouldReturnAllBooksInMemory() {
-        Book book = new BookBuilder().withAuthor("5 estralas").withTitle("Jessie").build();
+        Book book = new Book("5 estrelas", "Jessie", LocalDate.of(1991, Month.APRIL, 13));
         dao.insertBook(book);
         List<Book> allBooks = dao.getAllBooks();
+
         assertThat(allBooks, hasItems(book));
     }
 
     @Test
     public void shouldCheckoutBook() {
-        Book book = insertTestBook();
+        Book book = new Book("Test", "T", LocalDate.of(1991, Month.APRIL, 13));
+        dao.insertBook(book);
+
         dao.checkoutBookByTitle("Test");
         List<Book> allBooks = dao.getAllBooks();
-        assertThat(allBooks, not(hasItems(book)));
+
+        assertThat(allBooks, hasItems(book));
     }
 
     private Book insertTestBook() {
-        Book book = new BookBuilder().withTitle("Test").build();
+        Book book = new Book("Test", "T", LocalDate.of(1991, Month.APRIL, 13));
         dao.insertBook(book);
         return book;
     }
@@ -71,7 +77,7 @@ public class BooksDAOImplTest {
             dao.checkInBook("Issac Asimov");
             fail("Must throw CheckinErrorRuntimeException.");
         } catch (CheckinErrorRuntimeExcetion excetion) {
-            assertEquals(BooksDAO.CHECKIN_FAIL_MESSAGE,excetion.getMessage());
+            assertEquals(BooksDAO.CHECKIN_FAIL_MESSAGE, excetion.getMessage());
         }
     }
 

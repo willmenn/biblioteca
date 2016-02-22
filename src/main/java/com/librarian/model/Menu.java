@@ -9,7 +9,7 @@ import com.librarian.util.ScannerLibraryImpl;
 
 public class Menu {
 
-    public static final String LIST_ALL_BOOKS_OPTIOIN = "1";
+    public static final String LIST_ALL_BOOKS_OPTION = "1";
     public static final String QUIT_SYSTEM_OPTION = "0";
     public static final String INVALID_OPTION_MESSAGE = "Invalid Option.Select a valid Option!";
     public static final String LIST_ALL_BOOKS_DESCRIPTION = " - List All Books";
@@ -20,7 +20,7 @@ public class Menu {
     public static final String MESSAGE_TO_ASK_BOOK_TITLE = "Write the name of the book:\n";
     public static final String RETURN_BOOK_MESSAGE = "- Return Book";
 
-    private String[] options = new String[]{LIST_ALL_BOOKS_OPTIOIN + LIST_ALL_BOOKS_DESCRIPTION,
+    private String[] options = new String[]{LIST_ALL_BOOKS_OPTION + LIST_ALL_BOOKS_DESCRIPTION,
                                             CHECKOUT_OPTION + CHECKOUT_BOOK_MESSAGE,
                                             RETURN_BOOK_OPTION + RETURN_BOOK_MESSAGE,
                                             QUIT_SYSTEM_OPTION + QUIT_SYSTEM_DESCRIPTION};
@@ -47,7 +47,7 @@ public class Menu {
     public String processInput(String input) {
         String output = null;
 
-        if (input.equals(LIST_ALL_BOOKS_OPTIOIN)) {
+        if (input.equals(LIST_ALL_BOOKS_OPTION)) {
             output = dao.getAllBooks().toString();
         }
 
@@ -62,7 +62,7 @@ public class Menu {
         if (input.equals(QUIT_SYSTEM_OPTION)) {
             output = "";
         }
-        validateOuput(output);
+        validateOutput(output);
         return output;
     }
 
@@ -88,7 +88,7 @@ public class Menu {
     }
 
 
-    private void validateOuput(String output) {
+    private void validateOutput(String output) {
         if (output == null) {
             throw new InvalidOptionArgRuntimeException(INVALID_OPTION_MESSAGE);
         }
@@ -106,7 +106,4 @@ public class Menu {
         return dao;
     }
 
-    public void setDao(BooksDAO dao) {
-        this.dao = dao;
-    }
 }

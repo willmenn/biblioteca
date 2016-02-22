@@ -5,35 +5,29 @@ import java.time.LocalDate;
 public class Book {
 
     private String title;
-
     private String author;
-
     private LocalDate yearPublish;
+    private boolean isInTheLibrary;
 
-    private boolean isCheckout=false;
+    public Book(String title, String author, LocalDate yearPublish) {
+        this.title = title;
+        this.author = author;
+        this.yearPublish = yearPublish;
+        this.isInTheLibrary = true;
+    }
+
+
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public LocalDate getYearPublish() {
         return yearPublish;
-    }
-
-    public void setYearPublish(LocalDate yearPublish) {
-        this.yearPublish = yearPublish;
     }
 
     @Override
@@ -46,11 +40,15 @@ public class Book {
 
     }
 
-    public void setCheckout(boolean checkout) {
-        isCheckout = checkout;
+    public void checkOut() {
+        this.isInTheLibrary = false;
     }
 
-    public boolean isCheckout() {
-        return isCheckout;
+    public void checkIn() {
+        this.isInTheLibrary = true;
+    }
+
+    public boolean isInTheLibrary() {
+        return isInTheLibrary;
     }
 }
