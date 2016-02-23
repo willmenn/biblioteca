@@ -46,7 +46,7 @@ public class Menu {
 
 
     public String processInput(String input) {
-        String output = null;
+        String output;
 
         output = new InputHandler(dao, scannerLibrary).handleInput(input);
 
