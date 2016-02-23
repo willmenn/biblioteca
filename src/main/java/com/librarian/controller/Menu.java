@@ -48,11 +48,9 @@ public class Menu {
     public String processInput(String input) {
         String output = null;
 
-        output = new InputHandler(dao).handleInput(input);
+        output = new InputHandler(dao,scannerLibrary).handleInput(input);
 
-        if (input.equals(CHECKOUT_OPTION)) {
-            output = checkoutBook();
-        }
+
 
         if (input.equals(RETURN_BOOK_OPTION)) {
             output = returnBook();
@@ -71,12 +69,6 @@ public class Menu {
         return dao.checkInBook(bookTitle);
     }
 
-    private String checkoutBook() {
-        askToWriteTheBookTitle();
-        String bookName = getInputFromConsole();
-        String statusCheckout = dao.checkoutBookByTitle(bookName);
-        return statusCheckout;
-    }
 
     private void askToWriteTheBookTitle() {
         System.out.println(MESSAGE_TO_ASK_BOOK_TITLE);

@@ -20,7 +20,7 @@ public class AllBooksHandler implements ProcessInput {
         return isAccepted;
     }
 
-    public String processInput(String inputf) {
+    public String processInput() {
         return dao.getAllBooks().toString();
     }
 }
