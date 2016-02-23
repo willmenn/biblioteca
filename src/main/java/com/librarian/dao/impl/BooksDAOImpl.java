@@ -15,14 +15,14 @@ public class BooksDAOImpl implements BooksDAO {
     private List<Book> books;
 
     public BooksDAOImpl() {
-        buildBookList();
+        books = buildBookList();
     }
 
     public List<Book> getAllBooks() {
         List<Book> avaliableBooks = new ArrayList<Book>();
         for (Book book :
                 books) {
-            if (!book.isInTheLibrary()) {
+            if (book.isInTheLibrary()) {
                 avaliableBooks.add(book);
             }
         }

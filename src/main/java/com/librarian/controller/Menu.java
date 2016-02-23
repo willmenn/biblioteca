@@ -5,6 +5,7 @@ import com.librarian.dao.impl.BooksDAOImpl;
 import com.librarian.exception.InvalidOptionArgRuntimeException;
 import com.librarian.util.ScannerLibrary;
 import com.librarian.util.ScannerLibraryImpl;
+import handler.InputHandler;
 
 
 public class Menu {
@@ -47,9 +48,7 @@ public class Menu {
     public String processInput(String input) {
         String output = null;
 
-        if (input.equals(LIST_ALL_BOOKS_OPTION)) {
-            output = dao.getAllBooks().toString();
-        }
+        output = new InputHandler().handleInput(input);
 
         if (input.equals(CHECKOUT_OPTION)) {
             output = checkoutBook();
