@@ -22,9 +22,9 @@ public class Menu {
     public static final String RETURN_BOOK_MESSAGE = "- Return Book";
 
     private String[] options = new String[]{LIST_ALL_BOOKS_OPTION + LIST_ALL_BOOKS_DESCRIPTION,
-                                            CHECKOUT_OPTION + CHECKOUT_BOOK_MESSAGE,
-                                            RETURN_BOOK_OPTION + RETURN_BOOK_MESSAGE,
-                                            QUIT_SYSTEM_OPTION + QUIT_SYSTEM_DESCRIPTION};
+            CHECKOUT_OPTION + CHECKOUT_BOOK_MESSAGE,
+            RETURN_BOOK_OPTION + RETURN_BOOK_MESSAGE,
+            QUIT_SYSTEM_OPTION + QUIT_SYSTEM_DESCRIPTION};
 
     private ScannerLibrary scannerLibrary;
 
@@ -48,13 +48,7 @@ public class Menu {
     public String processInput(String input) {
         String output = null;
 
-        output = new InputHandler(dao,scannerLibrary).handleInput(input);
-
-
-
-        if (input.equals(RETURN_BOOK_OPTION)) {
-            output = returnBook();
-        }
+        output = new InputHandler(dao, scannerLibrary).handleInput(input);
 
         if (input.equals(QUIT_SYSTEM_OPTION)) {
             output = "";
@@ -63,20 +57,6 @@ public class Menu {
         return output;
     }
 
-    private String returnBook() {
-        askToWriteTheBookTitle();
-        String bookTitle = getInputFromConsole();
-        return dao.checkInBook(bookTitle);
-    }
-
-
-    private void askToWriteTheBookTitle() {
-        System.out.println(MESSAGE_TO_ASK_BOOK_TITLE);
-    }
-
-    private String getInputFromConsole() {
-        return scannerLibrary.createScanner();
-    }
 
 
     private void validateOutput(String output) {

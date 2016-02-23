@@ -38,6 +38,7 @@ public class InputHandler {
         handlers = new ArrayList<ProcessInput>();
         handlers.add(new AllBooksHandler(dao));
         handlers.add(new CheckBookOutHandler(dao, scannerLibrary));
+        handlers.add(new ReturnBookHandler(dao,scannerLibrary));
         return handlers;
     }
 

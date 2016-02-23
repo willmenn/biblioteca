@@ -52,7 +52,7 @@ public class BooksDAOImpl implements BooksDAO {
         for (Book bookStored :
                 books) {
             if (bookStored.getTitle().equals(title)) {
-                bookStored.checkOut();
+                bookStored.checkIn();
                 checkinSuccesFull = true;
             }
         }
