@@ -1,5 +1,6 @@
 package com.librarian.controller;
 
+import com.librarian.dao.MoviesDAO;
 import com.librarian.dao.impl.BooksDAOImpl;
 import com.librarian.entity.Book;
 import com.librarian.util.ScannerLibrayMock;
@@ -68,6 +69,54 @@ public class MenuTest {
         } catch (RuntimeException exception) {
             assertEquals(Menu.INVALID_OPTION_MESSAGE, exception.getMessage());
         }
+    }
+
+    @Test
+    public void shouldListAllMovies(){
+        String allMovies = menu.processInput(Menu.LIST_ALL_MOVIES_OPTION);
+        assertNotNull(allMovies);
+    }
+
+    @Test
+    public void shouldCheckoutMovie(){
+        String title = "Harry Potter";
+        ScannerLibrayMock scannerMock = new ScannerLibrayMock();
+        scannerMock.setResponseFromScanner(title);
+        menu.setScannerLibrary(scannerMock);
+        String checkoutSuccessfulMessage = menu.processInput(Menu.CHECKOUT_MOVIE_OPTION);
+        assertEquals(MoviesDAO.MOVIE_IS_AVAILABLE_MESSAGE,checkoutSuccessfulMessage);
+    }
+
+    @Test
+    public void shouldNotChkoutMovie(){
+        String title = "Indiana Jones";
+        ScannerLibrayMock scannerMock = new ScannerLibrayMock();
+        scannerMock.setResponseFromScanner(title);
+        menu.setScannerLibrary(scannerMock);
+        String checkoutunSuccessfulMessage = menu.processInput(Menu.CHECKOUT_MOVIE_OPTION);
+        assertEquals(MoviesDAO.MOVIE_NOT_AVAILABLE_MESSAGE,checkoutunSuccessfulMessage);
+    }
+
+    @Test
+    public void shouldCheckinMovie(){
+        String title = "Harry Potter";
+        ScannerLibrayMock scannerMock = new ScannerLibrayMock();
+        scannerMock.setResponseFromScanner(title);
+        menu.setScannerLibrary(scannerMock);
+        String checkoutunSuccessfulMessage = menu.processInput(Menu.CHECKOUT_MOVIE_OPTION);
+        assertEquals(MoviesDAO.MOVIE_NOT_AVAILABLE_MESSAGE,checkoutunSuccessfulMessage);
+        String successfulCheckin = menu.processInput(Menu.CHECKIN_MOVIE_OPTION);
+        assertEquals(MoviesDAO.CHECKIN_SUCCESSFUL_MESSAGE,successfulCheckin);
+    }
+
+    @Test
+    public void shouldNotCheckinMovie(){
+        String title = "Indiana Jones";
+        ScannerLibrayMock scannerMock = new ScannerLibrayMock();
+        scannerMock.setResponseFromScanner(title);
+        menu.setScannerLibrary(scannerMock);
+        String unsuccessfulCheckin = menu.processInput(Menu.CHECKIN_MOVIE_OPTION);
+        assertEquals(MoviesDAO.CHECKIN_FAIL_MESSAGE,unsuccessfulCheckin);
     }
 
 }
