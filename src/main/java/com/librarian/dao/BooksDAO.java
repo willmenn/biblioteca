@@ -12,7 +12,7 @@ public interface BooksDAO {
     String CHECKIN_SUCCESSFUL_MESSAGE= "Thank you for returning the book.";
     String CHECKIN_FAIL_MESSAGE="That is not a valid book to return.";
 
-    List<Book> getAllBooks();
+    List<Book> getAllBooksInTheLibrary();
 
     Boolean insertBook(Book book);
 

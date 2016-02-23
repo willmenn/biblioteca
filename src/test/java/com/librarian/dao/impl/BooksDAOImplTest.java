@@ -4,7 +4,6 @@ import com.librarian.dao.BooksDAO;
 import com.librarian.entity.Book;
 import com.librarian.exception.CheckinErrorRuntimeExcetion;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -26,7 +25,7 @@ public class BooksDAOImplTest {
 
     @Test
     public void shouldGetAListOfBooks() {
-        List<Book> allBooks = dao.getAllBooks();
+        List<Book> allBooks = dao.getAllBooksInTheLibrary();
         assertNotNull(allBooks);
     }
 
@@ -41,7 +40,7 @@ public class BooksDAOImplTest {
     public void shouldReturnAllBooksInMemory() {
         Book book = new Book("5 estrelas", "Jessie", LocalDate.of(1991, Month.APRIL, 13));
         dao.insertBook(book);
-        List<Book> allBooks = dao.getAllBooks();
+        List<Book> allBooks = dao.getAllBooksInTheLibrary();
 
         assertThat(allBooks, hasItems(book));
     }
@@ -52,7 +51,7 @@ public class BooksDAOImplTest {
         dao.insertBook(book);
 
         dao.checkoutBookByTitle("Test");
-        List<Book> allBooks = dao.getAllBooks();
+        List<Book> allBooks = dao.getAllBooksInTheLibrary();
 
         assertThat(allBooks, not(hasItems(book)));
     }

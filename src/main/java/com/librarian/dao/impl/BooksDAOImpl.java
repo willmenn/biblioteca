@@ -18,7 +18,7 @@ public class BooksDAOImpl implements BooksDAO {
         books = buildBookList();
     }
 
-    public List<Book> getAllBooks() {
+    public List<Book> getAllBooksInTheLibrary() {
         List<Book> avaliableBooks = new ArrayList<Book>();
         for (Book book :
                 books) {

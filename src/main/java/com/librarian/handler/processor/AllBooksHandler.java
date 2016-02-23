@@ -22,6 +22,6 @@ public class AllBooksHandler  extends ProcessBase implements ProcessInput {
     }
 
     public String processInput() {
-        return dao.getAllBooks().toString();
+        return dao.getAllBooksInTheLibrary().toString();
     }
 }
