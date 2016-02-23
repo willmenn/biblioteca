@@ -11,28 +11,41 @@ public class App {
 
         Menu menu = new Menu();
         printWelcome(menu);
-        System.out.println(menu.getOptions());
+        printMenuOptions(menu);
         String input = "";
 
         while (!input.equals("0")) {
+
             input = menu.getScannerLibrary().createScanner();
             String output;
+
             try {
                 output = menu.processInput(input);
             } catch (RuntimeException exception) {
                 output = exception.getMessage();
             }
-            System.out.println(output);
+
+            System.out.println(output+"\n");
+            printMenuOptions(menu);
         }
 
         System.out.println("Closing the System.");
 
     }
 
+    private static void printMenuOptions(Menu menu) {
+
+        System.out.println("\n"+"Menu Options:\n");
+
+        System.out.println(menu.getOptions());
+    }
+
     private static void printWelcome(Menu menu) {
+
         System.out.println(new WelcomeMessage().getWelcomeMessage());
 
         System.out.println("All Books:");
+
         System.out.println(menu.processInput(PRINT_ALL_BOOKS));
     }
 }
