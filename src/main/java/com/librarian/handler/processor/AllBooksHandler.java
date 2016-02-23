@@ -5,6 +5,7 @@ import com.librarian.handler.ProcessBase;
 import com.librarian.handler.ProcessInput;
 
 public class AllBooksHandler  extends ProcessBase implements ProcessInput {
+
     private static final String LIST_ALL_BOOKS_OPTION = "1";
 
     public AllBooksHandler(BooksDAO dao) {
