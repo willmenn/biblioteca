@@ -7,7 +7,7 @@ import com.librarian.util.ScannerLibrary;
 
 public class ReturnBookHandler implements ProcessInput {
 
-    private static final String RETURN_BOOK_OPTION = "3" ;
+    private static final String RETURN_BOOK_OPTION = "3";
 
     private BooksDAO dao;
 
@@ -19,9 +19,9 @@ public class ReturnBookHandler implements ProcessInput {
     }
 
     public boolean accept(String input) {
-        boolean isAccepted=false;
+        boolean isAccepted = false;
         if (input.equals(RETURN_BOOK_OPTION)) {
-            isAccepted=true;
+            isAccepted = true;
         }
         return isAccepted;
     }
