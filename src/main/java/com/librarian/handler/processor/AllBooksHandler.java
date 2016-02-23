@@ -9,7 +9,7 @@ public class AllBooksHandler  extends ProcessBase implements ProcessInput {
     private static final String LIST_ALL_BOOKS_OPTION = "1";
 
     public AllBooksHandler(BooksDAO dao) {
-        super(dao,null);
+        super(dao,null,null);
     }
 
     public boolean accept(String input) {
@@ -22,6 +22,6 @@ public class AllBooksHandler  extends ProcessBase implements ProcessInput {
     }
 
     public String processInput() {
-        return dao.getAllBooksInTheLibrary().toString();
+        return bookDAO.getAllBooksInTheLibrary().toString();
     }
 }

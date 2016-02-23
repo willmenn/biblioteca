@@ -10,7 +10,7 @@ public class ReturnBookHandler extends ProcessBase implements ProcessInput {
     private static final String RETURN_BOOK_OPTION = "3";
 
     public ReturnBookHandler(BooksDAO dao, ScannerLibrary scannerLibrary) {
-        super(dao, scannerLibrary);
+        super(dao, null,scannerLibrary);
     }
 
     public boolean accept(String input) {
@@ -24,7 +24,7 @@ public class ReturnBookHandler extends ProcessBase implements ProcessInput {
     public String processInput() {
         askToWriteTheBookTitle();
         String bookTitle = getInputFromConsole();
-        return dao.checkInBook(bookTitle);
+        return bookDAO.checkInBook(bookTitle);
     }
 }
 

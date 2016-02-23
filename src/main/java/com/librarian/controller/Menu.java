@@ -1,7 +1,9 @@
 package com.librarian.controller;
 
 import com.librarian.dao.BooksDAO;
+import com.librarian.dao.MoviesDAO;
 import com.librarian.dao.impl.BooksDAOImpl;
+import com.librarian.dao.impl.MoviesDAOImpl;
 import com.librarian.exception.InvalidOptionArgRuntimeException;
 import com.librarian.util.ScannerLibrary;
 import com.librarian.util.ScannerLibraryImpl;
@@ -18,7 +20,7 @@ public class Menu {
     public static final String CHECKOUT_BOOK_OPTION = "2";
     public static final String CHECKOUT_BOOK_MESSAGE = "- Checkout Book";
     public static final String RETURN_BOOK_OPTION = "3";
-    public static final String MESSAGE_TO_ASK_BOOK_TITLE = "Write the name of the book:\n";
+    public static final String MESSAGE_TO_ASK_FOR_THE_NAME = "Write the name:\n";
     public static final String RETURN_BOOK_MESSAGE = "- Return Book";
     public static final String LIST_ALL_MOVIES_OPTION = "4";
     public static final String LIST_ALL_MOVIES_MESSAGE = " - List All Movies";
@@ -39,7 +41,10 @@ public class Menu {
 
     private BooksDAO dao;
 
+    private MoviesDAO movieDAO;
+
     public Menu() {
+        movieDAO= new MoviesDAOImpl();
         dao = new BooksDAOImpl();
         scannerLibrary = new ScannerLibraryImpl();
     }
@@ -57,7 +62,7 @@ public class Menu {
     public String processInput(String input) {
         String output;
 
-        output = new InputHandler(dao, scannerLibrary).handleInput(input);
+        output = new InputHandler(dao,movieDAO, scannerLibrary).handleInput(input);
 
         validateOutput(output);
         
