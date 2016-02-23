@@ -24,8 +24,11 @@ public class MenuTest {
     public void shouldReturnMenuOptions() {
         String options = menu.getOptions();
         String expected = Menu.LIST_ALL_BOOKS_OPTION + Menu.LIST_ALL_BOOKS_DESCRIPTION + "\n"
-                + Menu.CHECKOUT_OPTION + Menu.CHECKOUT_BOOK_MESSAGE + "\n"
+                + Menu.CHECKOUT_BOOK_OPTION + Menu.CHECKOUT_BOOK_MESSAGE + "\n"
                 + Menu.RETURN_BOOK_OPTION + Menu.RETURN_BOOK_MESSAGE + "\n"
+                + Menu.LIST_ALL_MOVIES_OPTION + Menu.LIST_ALL_MOVIES_MESSAGE + "\n"
+                + Menu.CHECKOUT_MOVIE_OPTION + Menu.CHECKOUT_MOVIE_MESSAGE + "\n"
+                + Menu.CHECKIN_MOVIE_OPTION + Menu.CHECKIN_MOVIE_MESSAGE + "\n"
                 + Menu.QUIT_SYSTEM_OPTION + Menu.QUIT_SYSTEM_DESCRIPTION + "\n";
         assertEquals(expected, options);
     }
@@ -53,7 +56,7 @@ public class MenuTest {
         Book book = new Book(title, "", LocalDate.of(1991, Month.APRIL, 13));
         menu.getDao().insertBook(book);
 
-        String checkoutStatusMessage = menu.processInput(Menu.CHECKOUT_OPTION);
+        String checkoutStatusMessage = menu.processInput(Menu.CHECKOUT_BOOK_OPTION);
         assertEquals(BooksDAOImpl.BOOK_IS_AVAILABLE_MESSAGE, checkoutStatusMessage);
     }
 
