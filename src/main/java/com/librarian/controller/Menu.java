@@ -48,7 +48,7 @@ public class Menu {
     public String processInput(String input) {
         String output = null;
 
-        output = new InputHandler().handleInput(input);
+        output = new InputHandler(dao).handleInput(input);
 
         if (input.equals(CHECKOUT_OPTION)) {
             output = checkoutBook();

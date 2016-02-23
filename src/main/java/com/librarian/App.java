@@ -5,10 +5,12 @@ import com.librarian.controller.Menu;
 
 public class App {
 
+    public static final String PRINT_ALL_BOOKS = "1";
+
     public static void main(String[] args) {
 
-        printWelcome();
         Menu menu = new Menu();
+        printWelcome(menu);
         System.out.println(menu.getOptions());
         String input = "";
 
@@ -27,10 +29,10 @@ public class App {
 
     }
 
-    private static void printWelcome() {
+    private static void printWelcome(Menu menu) {
         System.out.println(new WelcomeMessage().getWelcomeMessage());
 
         System.out.println("All Books:");
-        System.out.println(new BooksDAOImpl().getAllBooks());
+        System.out.println(menu.processInput(PRINT_ALL_BOOKS));
     }
 }
