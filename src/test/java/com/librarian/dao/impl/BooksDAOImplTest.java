@@ -38,7 +38,6 @@ public class BooksDAOImplTest {
     }
 
     @Test
-    //@Ignore
     public void shouldReturnAllBooksInMemory() {
         Book book = new Book("5 estrelas", "Jessie", LocalDate.of(1991, Month.APRIL, 13));
         dao.insertBook(book);
