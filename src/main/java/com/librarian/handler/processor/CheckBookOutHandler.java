@@ -1,34 +1,36 @@
-package com.librarian.handler;
+package com.librarian.handler.processor;
 
 import com.librarian.controller.Menu;
 import com.librarian.dao.BooksDAO;
+import com.librarian.handler.ProcessInput;
 import com.librarian.util.ScannerLibrary;
 
-public class ReturnBookHandler implements ProcessInput {
+public class CheckBookOutHandler implements ProcessInput {
 
-    private static final String RETURN_BOOK_OPTION = "3" ;
+    private static final String CHECKOUT_OPTION = "2";
 
     private BooksDAO dao;
 
     private ScannerLibrary scannerLibrary;
 
-    public ReturnBookHandler(BooksDAO dao, ScannerLibrary scannerLibrary) {
+    public CheckBookOutHandler(BooksDAO dao, ScannerLibrary scannerLibrary) {
         this.dao = dao;
         this.scannerLibrary = scannerLibrary;
     }
 
     public boolean accept(String input) {
-        boolean isAccepted=false;
-        if (input.equals(RETURN_BOOK_OPTION)) {
-            isAccepted=true;
+        boolean isAccepted = false;
+        if (input.equals(CHECKOUT_OPTION)) {
+            isAccepted = true;
         }
         return isAccepted;
     }
 
     public String processInput() {
         askToWriteTheBookTitle();
-        String bookTitle = getInputFromConsole();
-        return dao.checkInBook(bookTitle);
+        String bookName = getInputFromConsole();
+        String statusCheckout = dao.checkoutBookByTitle(bookName);
+        return statusCheckout;
     }
 
     private void askToWriteTheBookTitle() {
@@ -39,4 +41,3 @@ public class ReturnBookHandler implements ProcessInput {
         return scannerLibrary.createScanner();
     }
 }
-

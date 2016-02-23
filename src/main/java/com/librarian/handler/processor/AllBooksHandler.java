@@ -1,6 +1,7 @@
-package com.librarian.handler;
+package com.librarian.handler.processor;
 
 import com.librarian.dao.BooksDAO;
+import com.librarian.handler.ProcessInput;
 
 public class AllBooksHandler implements ProcessInput {
     private static final String LIST_ALL_BOOKS_OPTION = "1";

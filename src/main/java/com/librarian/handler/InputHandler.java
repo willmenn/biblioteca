@@ -1,6 +1,10 @@
 package com.librarian.handler;
 
 import com.librarian.dao.BooksDAO;
+import com.librarian.handler.processor.AllBooksHandler;
+import com.librarian.handler.processor.CheckBookOutHandler;
+import com.librarian.handler.processor.QuitSystem;
+import com.librarian.handler.processor.ReturnBookHandler;
 import com.librarian.util.ScannerLibrary;
 
 import java.util.ArrayList;
@@ -39,6 +43,7 @@ public class InputHandler {
         handlers.add(new AllBooksHandler(dao));
         handlers.add(new CheckBookOutHandler(dao, scannerLibrary));
         handlers.add(new ReturnBookHandler(dao,scannerLibrary));
+        handlers.add(new QuitSystem());
         return handlers;
     }
 

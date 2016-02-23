@@ -50,13 +50,10 @@ public class Menu {
 
         output = new InputHandler(dao, scannerLibrary).handleInput(input);
 
-        if (input.equals(QUIT_SYSTEM_OPTION)) {
-            output = "";
-        }
         validateOutput(output);
+        
         return output;
     }
-
 
 
     private void validateOutput(String output) {
