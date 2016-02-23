@@ -1,21 +1,16 @@
 package com.librarian.handler.processor;
 
-import com.librarian.controller.Menu;
 import com.librarian.dao.BooksDAO;
+import com.librarian.handler.ProcessBase;
 import com.librarian.handler.ProcessInput;
 import com.librarian.util.ScannerLibrary;
 
-public class CheckBookOutHandler implements ProcessInput {
+public class CheckBookOutHandler extends ProcessBase implements ProcessInput {
 
     private static final String CHECKOUT_OPTION = "2";
 
-    private BooksDAO dao;
-
-    private ScannerLibrary scannerLibrary;
-
     public CheckBookOutHandler(BooksDAO dao, ScannerLibrary scannerLibrary) {
-        this.dao = dao;
-        this.scannerLibrary = scannerLibrary;
+        super(dao, scannerLibrary);
     }
 
     public boolean accept(String input) {
@@ -33,11 +28,4 @@ public class CheckBookOutHandler implements ProcessInput {
         return statusCheckout;
     }
 
-    private void askToWriteTheBookTitle() {
-        System.out.println(Menu.MESSAGE_TO_ASK_BOOK_TITLE);
-    }
-
-    private String getInputFromConsole() {
-        return scannerLibrary.createScanner();
-    }
 }

@@ -1,15 +1,14 @@
 package com.librarian.handler.processor;
 
 import com.librarian.dao.BooksDAO;
+import com.librarian.handler.ProcessBase;
 import com.librarian.handler.ProcessInput;
 
-public class AllBooksHandler implements ProcessInput {
+public class AllBooksHandler  extends ProcessBase implements ProcessInput {
     private static final String LIST_ALL_BOOKS_OPTION = "1";
 
-    private BooksDAO dao;
-
     public AllBooksHandler(BooksDAO dao) {
-        this.dao = dao;
+        super(dao,null);
     }
 
     public boolean accept(String input) {
