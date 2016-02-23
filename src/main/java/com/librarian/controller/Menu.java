@@ -5,6 +5,7 @@ import com.librarian.dao.impl.BooksDAOImpl;
 import com.librarian.exception.InvalidOptionArgRuntimeException;
 import com.librarian.util.ScannerLibrary;
 import com.librarian.util.ScannerLibraryImpl;
+import com.librarian.handler.InputHandler;
 
 
 public class Menu {
@@ -21,9 +22,9 @@ public class Menu {
     public static final String RETURN_BOOK_MESSAGE = "- Return Book";
 
     private String[] options = new String[]{LIST_ALL_BOOKS_OPTION + LIST_ALL_BOOKS_DESCRIPTION,
-                                            CHECKOUT_OPTION + CHECKOUT_BOOK_MESSAGE,
-                                            RETURN_BOOK_OPTION + RETURN_BOOK_MESSAGE,
-                                            QUIT_SYSTEM_OPTION + QUIT_SYSTEM_DESCRIPTION};
+            CHECKOUT_OPTION + CHECKOUT_BOOK_MESSAGE,
+            RETURN_BOOK_OPTION + RETURN_BOOK_MESSAGE,
+            QUIT_SYSTEM_OPTION + QUIT_SYSTEM_DESCRIPTION};
 
     private ScannerLibrary scannerLibrary;
 
@@ -47,44 +48,11 @@ public class Menu {
     public String processInput(String input) {
         String output = null;
 
-        if (input.equals(LIST_ALL_BOOKS_OPTION)) {
-            output = dao.getAllBooks().toString();
-        }
+        output = new InputHandler(dao, scannerLibrary).handleInput(input);
 
-        if (input.equals(CHECKOUT_OPTION)) {
-            output = checkoutBook();
-        }
-
-        if (input.equals(RETURN_BOOK_OPTION)) {
-            output = returnBook();
-        }
-
-        if (input.equals(QUIT_SYSTEM_OPTION)) {
-            output = "";
-        }
         validateOutput(output);
+        
         return output;
-    }
-
-    private String returnBook() {
-        askToWriteTheBookTitle();
-        String bookTitle = getInputFromConsole();
-        return dao.checkInBook(bookTitle);
-    }
-
-    private String checkoutBook() {
-        askToWriteTheBookTitle();
-        String bookName = getInputFromConsole();
-        String statusCheckout = dao.checkoutBookByTitle(bookName);
-        return statusCheckout;
-    }
-
-    private void askToWriteTheBookTitle() {
-        System.out.println(MESSAGE_TO_ASK_BOOK_TITLE);
-    }
-
-    private String getInputFromConsole() {
-        return scannerLibrary.createScanner();
     }
 
 

@@ -12,6 +12,7 @@ import java.time.Month;
 import java.util.List;
 
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 
 public class BooksDAOImplTest {
@@ -37,7 +38,6 @@ public class BooksDAOImplTest {
     }
 
     @Test
-    @Ignore
     public void shouldReturnAllBooksInMemory() {
         Book book = new Book("5 estrelas", "Jessie", LocalDate.of(1991, Month.APRIL, 13));
         dao.insertBook(book);
@@ -54,7 +54,7 @@ public class BooksDAOImplTest {
         dao.checkoutBookByTitle("Test");
         List<Book> allBooks = dao.getAllBooks();
 
-        assertThat(allBooks, hasItems(book));
+        assertThat(allBooks, not(hasItems(book)));
     }
 
     private Book insertTestBook() {
