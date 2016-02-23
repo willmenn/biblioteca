@@ -1,7 +1,7 @@
 package com.librarian;
 
 import com.librarian.dao.impl.BooksDAOImpl;
-import com.librarian.model.Menu;
+import com.librarian.controller.Menu;
 
 public class App {
 

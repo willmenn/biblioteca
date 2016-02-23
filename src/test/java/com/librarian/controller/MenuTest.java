@@ -1,4 +1,4 @@
-package com.librarian.model;
+package com.librarian.controller;
 
 import com.librarian.dao.impl.BooksDAOImpl;
 import com.librarian.entity.Book;
