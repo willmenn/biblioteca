@@ -6,15 +6,15 @@ public class Movie {
     private String year;
     private String director;
     private String rating;
-
+    private boolean isInTheLibrary;
 
     @Override
     public String toString() {
         return
-                "name='" + name  +
-                " year='" + year+
-                " director='" + director +
-                " rating='" + rating;
+                "name=" + name +
+                        " year=" + year +
+                        " director=" + director +
+                        " rating=" + rating;
     }
 
     public Movie(String name, String year, String director, String rating) {
@@ -22,6 +22,7 @@ public class Movie {
         this.year = year;
         this.director = director;
         this.rating = rating;
+        this.isInTheLibrary=true;
     }
 
     public String getName() {
@@ -38,5 +39,17 @@ public class Movie {
 
     public String getRating() {
         return rating;
+    }
+
+    public void checkout() {
+        this.isInTheLibrary = false;
+    }
+
+    public void checkin() {
+        this.isInTheLibrary = true;
+    }
+
+    public boolean isInTheLibrary() {
+        return isInTheLibrary;
     }
 }

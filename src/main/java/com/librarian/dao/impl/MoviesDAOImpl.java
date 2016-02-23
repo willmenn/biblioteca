@@ -10,22 +10,61 @@ public class MoviesDAOImpl implements MoviesDAO {
 
     private List<Movie> movies;
 
-    public MoviesDAOImpl(){
-        movies= buildMovies();
+    public MoviesDAOImpl() {
+        movies = buildMovies();
     }
 
-public List<Movie> buildMovies(){
-    List<Movie> movies = new ArrayList<Movie>();
-    movies.add(new Movie("Harry Potter", "J K Rolling", "1233","*"));
-    movies.add(new Movie("Star Wars", "George Lucas", "2000","*"));
-    return movies;
-}
+    public List<Movie> buildMovies() {
+        List<Movie> movies = new ArrayList<Movie>();
+        movies.add(new Movie("Harry Potter", "J K Rolling", "1233", "*"));
+        movies.add(new Movie("Star Wars", "George Lucas", "2000", "*"));
+        return movies;
+    }
+
     public boolean insertMovie(Movie movie) {
-       return movies.add(movie);
+        return movies.add(movie);
     }
 
-    public String getAllMovies() {
-        return movies.toString();
+    public List<Movie> getAllMoviesInTheLibrary() {
+
+        List<Movie> avaliableMovies = new ArrayList<Movie>();
+        for (Movie movie :
+                movies) {
+            if (movie.isInTheLibrary()) {
+                avaliableMovies.add(movie);
+            }
+        }
+        return avaliableMovies;
     }
 
+    public String checkoutMovieByName(String name) {
+        boolean isSuccessfulCheckout = false;
+        for (Movie movie : getAllMoviesInTheLibrary()) {
+            if (movie.getName().equals(name)) {
+                movie.checkout();
+                isSuccessfulCheckout = true;
+            }
+        }
+
+        if (!isSuccessfulCheckout) {
+            return MOVIE_NOT_AVAILABLE_MESSAGE;
+        }
+        return MOVIE_IS_AVAILABLE_MESSAGE;
+    }
+
+    public String checkInMovie(String name) {
+        boolean isSuccesfulCheckin = false;
+        for (Movie movie : movies) {
+            if ((movie.getName().equals(name)) && (!movie.isInTheLibrary())) {
+                movie.checkin();
+                isSuccesfulCheckin = true;
+            }
+        }
+
+        if (!isSuccesfulCheckin) {
+            return CHECKIN_FAIL_MESSAGE;
+        }
+
+        return CHECKIN_SUCCESSFUL_MESSAGE;
+    }
 }

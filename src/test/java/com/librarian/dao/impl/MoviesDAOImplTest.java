@@ -5,8 +5,11 @@ import com.librarian.entity.Movie;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.List;
+
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.core.IsCollectionContaining.hasItems;
+import static org.junit.Assert.*;
 
 public class MoviesDAOImplTest {
 
@@ -25,10 +28,33 @@ public class MoviesDAOImplTest {
 
     @Test
     public void shouldGetAllMovies() {
-        String allMovies = dao.getAllMovies();
-        String expected = "[name='Harry Potter year='J K Rolling director='1233 rating='*," +
-                " name='Star Wars year='George Lucas director='2000 rating='*]";
-        assertEquals(expected, allMovies);
+        List<Movie> movies = dao.getAllMoviesInTheLibrary();
+        assertNotNull(movies);
+    }
+
+    @Test
+    public void shouldCheckMovieOut() {
+        String successfulCheckoutMessage = dao.checkoutMovieByName("Harry Potter");
+        assertEquals(MoviesDAO.MOVIE_IS_AVAILABLE_MESSAGE, successfulCheckoutMessage);
+    }
+
+    @Test
+    public void shouldNotCheckMovieOut() {
+        String unSuccessfulCheckoutMessage = dao.checkoutMovieByName("Indiana Jones");
+        assertEquals(MoviesDAO.MOVIE_NOT_AVAILABLE_MESSAGE, unSuccessfulCheckoutMessage);
+    }
+
+    @Test
+    public void shouldCheckMovieIn() {
+        dao.checkoutMovieByName("Harry Potter");
+        String successfulCheckin = dao.checkInMovie("Harry Potter");
+        assertEquals(MoviesDAO.CHECKIN_SUCCESSFUL_MESSAGE, successfulCheckin);
+    }
+
+    @Test
+    public void shouldNotCheckin(){
+        String unsuccesfulCheckin = dao.checkInMovie("Indian Jones");
+        assertEquals(MoviesDAO.CHECKIN_FAIL_MESSAGE,unsuccesfulCheckin);
     }
 }
 
