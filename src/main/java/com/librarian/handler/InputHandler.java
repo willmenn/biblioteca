@@ -2,6 +2,7 @@ package com.librarian.handler;
 
 import com.librarian.dao.BooksDAO;
 import com.librarian.dao.MoviesDAO;
+import com.librarian.entity.User;
 import com.librarian.handler.processor.*;
 import com.librarian.util.ScannerLibrary;
 
@@ -18,10 +19,13 @@ public class InputHandler {
 
     private ScannerLibrary scannerLibrary;
 
-    public InputHandler(BooksDAO dao,MoviesDAO moviesDAO, ScannerLibrary scannerLibrary) {
+    private User user;
+
+    public InputHandler(BooksDAO dao, MoviesDAO moviesDAO, ScannerLibrary scannerLibrary, User user) {
         this.dao = dao;
-        this.moviesDAO=moviesDAO;
+        this.moviesDAO = moviesDAO;
         this.scannerLibrary = scannerLibrary;
+        this.user = user;
         handlers = buildHandlers();
     }
 
@@ -45,8 +49,9 @@ public class InputHandler {
         handlers.add(new CheckBookOutHandler(dao, scannerLibrary));
         handlers.add(new ReturnBookHandler(dao, scannerLibrary));
         handlers.add(new AllMoviesHandler(moviesDAO));
-        handlers.add(new CheckMOvieOutHandler(moviesDAO,scannerLibrary));
-        handlers.add(new CheckMovieInHandler(moviesDAO,scannerLibrary));
+        handlers.add(new CheckMOvieOutHandler(moviesDAO, scannerLibrary));
+        handlers.add(new CheckMovieInHandler(moviesDAO, scannerLibrary));
+        handlers.add(new UserDetailsHandler(user));
         handlers.add(new QuitSystem());
         return handlers;
     }

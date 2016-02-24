@@ -10,7 +10,7 @@ public class CheckBookOutHandler extends ProcessBase implements ProcessInput {
     private static final String CHECKOUT_OPTION = "2";
 
     public CheckBookOutHandler(BooksDAO dao, ScannerLibrary scannerLibrary) {
-        super(dao,null, scannerLibrary);
+        super(dao,null, scannerLibrary,null);
     }
 
     public boolean accept(String input) {

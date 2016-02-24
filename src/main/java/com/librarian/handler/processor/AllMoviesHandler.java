@@ -8,7 +8,7 @@ import com.librarian.handler.ProcessInput;
 public class AllMoviesHandler extends ProcessBase implements ProcessInput {
 
     public AllMoviesHandler(MoviesDAO dao) {
-        super(null,dao, null);
+        super(null,dao, null,null);
     }
 
     public boolean accept(String input) {

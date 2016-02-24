@@ -30,6 +30,7 @@ public class MenuTest {
                 + Menu.LIST_ALL_MOVIES_OPTION + Menu.LIST_ALL_MOVIES_MESSAGE + "\n"
                 + Menu.CHECKOUT_MOVIE_OPTION + Menu.CHECKOUT_MOVIE_MESSAGE + "\n"
                 + Menu.CHECKIN_MOVIE_OPTION + Menu.CHECKIN_MOVIE_MESSAGE + "\n"
+                + Menu.USER_DETAILS_OPTION + Menu.USER_DETAILS_MESSAGE+ "\n"
                 + Menu.QUIT_SYSTEM_OPTION + Menu.QUIT_SYSTEM_DESCRIPTION + "\n";
         assertEquals(expected, options);
     }

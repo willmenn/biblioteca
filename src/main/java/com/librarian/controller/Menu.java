@@ -4,6 +4,7 @@ import com.librarian.dao.BooksDAO;
 import com.librarian.dao.MoviesDAO;
 import com.librarian.dao.impl.BooksDAOImpl;
 import com.librarian.dao.impl.MoviesDAOImpl;
+import com.librarian.entity.User;
 import com.librarian.exception.InvalidOptionArgRuntimeException;
 import com.librarian.util.ScannerLibrary;
 import com.librarian.util.ScannerLibraryImpl;
@@ -28,6 +29,8 @@ public class Menu {
     public static final String CHECKOUT_MOVIE_MESSAGE = " - Checkout Movie";
     public static final String CHECKIN_MOVIE_OPTION = "6";
     public static final String CHECKIN_MOVIE_MESSAGE = " - Checkin Movie";
+    public static final String USER_DETAILS_OPTION = "7";
+    public static final String USER_DETAILS_MESSAGE = " - User Details";
 
     private String[] options = new String[]{LIST_ALL_BOOKS_OPTION + LIST_ALL_BOOKS_DESCRIPTION,
             CHECKOUT_BOOK_OPTION + CHECKOUT_BOOK_MESSAGE,
@@ -35,6 +38,7 @@ public class Menu {
             LIST_ALL_MOVIES_OPTION + LIST_ALL_MOVIES_MESSAGE,
             CHECKOUT_MOVIE_OPTION + CHECKOUT_MOVIE_MESSAGE,
             CHECKIN_MOVIE_OPTION + CHECKIN_MOVIE_MESSAGE,
+            USER_DETAILS_OPTION + USER_DETAILS_MESSAGE,
             QUIT_SYSTEM_OPTION + QUIT_SYSTEM_DESCRIPTION};
 
     private ScannerLibrary scannerLibrary;
@@ -42,6 +46,8 @@ public class Menu {
     private BooksDAO dao;
 
     private MoviesDAO movieDAO;
+
+    private User user;
 
     public Menu() {
         movieDAO= new MoviesDAOImpl();
@@ -62,7 +68,7 @@ public class Menu {
     public String processInput(String input) {
         String output;
 
-        output = new InputHandler(dao,movieDAO, scannerLibrary).handleInput(input);
+        output = new InputHandler(dao,movieDAO, scannerLibrary,user).handleInput(input);
 
         validateOutput(output);
         
@@ -88,4 +94,7 @@ public class Menu {
         return dao;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

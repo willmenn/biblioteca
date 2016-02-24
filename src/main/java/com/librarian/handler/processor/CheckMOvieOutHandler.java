@@ -9,7 +9,7 @@ import com.librarian.util.ScannerLibrary;
 public class CheckMOvieOutHandler extends ProcessBase implements ProcessInput {
 
     public CheckMOvieOutHandler( MoviesDAO movieDAO, ScannerLibrary scannerLibrary) {
-        super(null, movieDAO, scannerLibrary);
+        super(null, movieDAO, scannerLibrary,null);
     }
 
     public boolean accept(String input) {

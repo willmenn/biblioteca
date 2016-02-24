@@ -68,13 +68,11 @@ public class App {
             User userLogged = dao.login(libraryNumber, pass);
             if (userLogged == null) {
                 System.out.println("Error in Login, plz try again.");
-            }else {
-                isLogged=true;
+            } else {
+                isLogged = true;
+                menu.setUser(userLogged);
             }
-
         }
-
-
     }
 
 }
