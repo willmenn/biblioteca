@@ -103,8 +103,10 @@ public class MenuTest {
         ScannerLibrayMock scannerMock = new ScannerLibrayMock();
         scannerMock.setResponseFromScanner(title);
         menu.setScannerLibrary(scannerMock);
+
         String checkoutunSuccessfulMessage = menu.processInput(Menu.CHECKOUT_MOVIE_OPTION);
-        assertEquals(MoviesDAO.MOVIE_NOT_AVAILABLE_MESSAGE,checkoutunSuccessfulMessage);
+        assertEquals(MoviesDAO.MOVIE_IS_AVAILABLE_MESSAGE,checkoutunSuccessfulMessage);
+
         String successfulCheckin = menu.processInput(Menu.CHECKIN_MOVIE_OPTION);
         assertEquals(MoviesDAO.CHECKIN_SUCCESSFUL_MESSAGE,successfulCheckin);
     }
