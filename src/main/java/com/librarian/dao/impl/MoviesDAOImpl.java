@@ -27,21 +27,21 @@ public class MoviesDAOImpl implements MoviesDAO {
 
     public List<Movie> getAllMoviesInTheLibrary() {
 
-        List<Movie> avaliableMovies = new ArrayList<Movie>();
+        List<Movie> availableMovies = new ArrayList<Movie>();
         for (Movie movie :
                 movies) {
             if (movie.isInTheLibrary()) {
-                avaliableMovies.add(movie);
+                availableMovies.add(movie);
             }
         }
-        return avaliableMovies;
+        return availableMovies;
     }
 
     public String checkoutMovieByName(String name) {
         boolean isSuccessfulCheckout = false;
         for (Movie movie : getAllMoviesInTheLibrary()) {
             if (movie.getName().equals(name)) {
-                movie.checkout();
+                movie.checkOut();
                 isSuccessfulCheckout = true;
             }
         }
@@ -53,15 +53,15 @@ public class MoviesDAOImpl implements MoviesDAO {
     }
 
     public String checkInMovie(String name) {
-        boolean isSuccesfulCheckin = false;
+        boolean isSuccesfullCheckIn = false;
         for (Movie movie : movies) {
             if ((movie.getName().equals(name)) && (!movie.isInTheLibrary())) {
-                movie.checkin();
-                isSuccesfulCheckin = true;
+                movie.checkIn();
+                isSuccesfullCheckIn = true;
             }
         }
 
-        if (!isSuccesfulCheckin) {
+        if (!isSuccesfullCheckIn) {
             return CHECKIN_FAIL_MESSAGE;
         }
 

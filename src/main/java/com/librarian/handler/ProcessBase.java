@@ -11,16 +11,14 @@ public class ProcessBase {
     protected BooksDAO bookDAO;
 
     protected MoviesDAO movieDAO;
-
+    protected User user;
     private ScannerLibrary scannerLibrary;
 
-    protected User user;
-
-    public ProcessBase(BooksDAO dao,MoviesDAO movieDAO, ScannerLibrary scannerLibrary,User user) {
+    public ProcessBase(BooksDAO dao, MoviesDAO movieDAO, ScannerLibrary scannerLibrary, User user) {
         this.bookDAO = dao;
-        this.movieDAO=movieDAO;
+        this.movieDAO = movieDAO;
         this.scannerLibrary = scannerLibrary;
-        this.user=user;
+        this.user = user;
     }
 
     protected void askToWriteTheBookTitle() {

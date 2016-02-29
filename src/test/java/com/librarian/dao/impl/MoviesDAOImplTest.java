@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.junit.Assert.*;
 
 public class MoviesDAOImplTest {

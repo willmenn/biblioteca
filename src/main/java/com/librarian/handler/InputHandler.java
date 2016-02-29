@@ -49,7 +49,7 @@ public class InputHandler {
         handlers.add(new CheckBookOutHandler(dao, scannerLibrary));
         handlers.add(new ReturnBookHandler(dao, scannerLibrary));
         handlers.add(new AllMoviesHandler(moviesDAO));
-        handlers.add(new CheckMOvieOutHandler(moviesDAO, scannerLibrary));
+        handlers.add(new CheckMovieOutHandler(moviesDAO, scannerLibrary));
         handlers.add(new CheckMovieInHandler(moviesDAO, scannerLibrary));
         handlers.add(new UserDetailsHandler(user));
         handlers.add(new QuitSystem());

@@ -16,18 +16,8 @@ public class Book {
         this.isInTheLibrary = true;
     }
 
-
-
     public String getTitle() {
         return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public LocalDate getYearPublish() {
-        return yearPublish;
     }
 
     @Override

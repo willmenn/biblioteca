@@ -6,9 +6,9 @@ import com.librarian.dao.impl.BooksDAOImpl;
 import com.librarian.dao.impl.MoviesDAOImpl;
 import com.librarian.entity.User;
 import com.librarian.exception.InvalidOptionArgRuntimeException;
+import com.librarian.handler.InputHandler;
 import com.librarian.util.ScannerLibrary;
 import com.librarian.util.ScannerLibraryImpl;
-import com.librarian.handler.InputHandler;
 
 
 public class Menu {
