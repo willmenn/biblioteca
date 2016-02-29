@@ -29,23 +29,11 @@ public class Movie {
         return name;
     }
 
-    public String getYear() {
-        return year;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void checkout() {
+    public void checkOut() {
         this.isInTheLibrary = false;
     }
 
-    public void checkin() {
+    public void checkIn() {
         this.isInTheLibrary = true;
     }
 

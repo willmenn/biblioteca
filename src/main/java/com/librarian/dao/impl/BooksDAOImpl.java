@@ -19,14 +19,14 @@ public class BooksDAOImpl implements BooksDAO {
     }
 
     public List<Book> getAllBooksInTheLibrary() {
-        List<Book> avaliableBooks = new ArrayList<Book>();
+        List<Book> availableBooks = new ArrayList<Book>();
         for (Book book :
                 books) {
             if (book.isInTheLibrary()) {
-                avaliableBooks.add(book);
+                availableBooks.add(book);
             }
         }
-        return avaliableBooks;
+        return availableBooks;
     }
 
     public Boolean insertBook(Book book) {
@@ -48,15 +48,15 @@ public class BooksDAOImpl implements BooksDAO {
     }
 
     public String checkInBook(String title) {
-        boolean checkinSuccesFull = false;
+        boolean checkInSuccesFull = false;
         for (Book bookStored :
                 books) {
             if (bookStored.getTitle().equals(title)) {
                 bookStored.checkIn();
-                checkinSuccesFull = true;
+                checkInSuccesFull = true;
             }
         }
-        if (!checkinSuccesFull) {
+        if (!checkInSuccesFull) {
             throw new CheckinErrorRuntimeExcetion(CHECKIN_FAIL_MESSAGE);
         }
 

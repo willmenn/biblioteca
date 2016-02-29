@@ -8,11 +8,6 @@ public class ScannerLibrayMock implements ScannerLibrary {
         return responseFromScanner;
     }
 
-
-    public String getResponseFromScanner() {
-        return responseFromScanner;
-    }
-
     public void setResponseFromScanner(String responseFromScanner) {
         this.responseFromScanner = responseFromScanner;
     }

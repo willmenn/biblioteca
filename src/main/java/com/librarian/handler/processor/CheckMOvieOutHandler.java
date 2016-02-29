@@ -6,9 +6,9 @@ import com.librarian.handler.ProcessBase;
 import com.librarian.handler.ProcessInput;
 import com.librarian.util.ScannerLibrary;
 
-public class CheckMOvieOutHandler extends ProcessBase implements ProcessInput {
+public class CheckMovieOutHandler extends ProcessBase implements ProcessInput {
 
-    public CheckMOvieOutHandler( MoviesDAO movieDAO, ScannerLibrary scannerLibrary) {
+    public CheckMovieOutHandler(MoviesDAO movieDAO, ScannerLibrary scannerLibrary) {
         super(null, movieDAO, scannerLibrary,null);
     }
 
